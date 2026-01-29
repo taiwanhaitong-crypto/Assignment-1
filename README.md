@@ -163,7 +163,85 @@ Summary: 1 package finished [x.xx s]
 
 **Your actual output:**
 ```
-[Paste your build summary here]
+[hw@HongYun:~/PolyU-AAE5303-env-smork-test/ros2_ws$ colcon build --event-handlers console_direct+
+Starting >>> env_check_pkg
+-- The C compiler identification is GNU 11.4.0
+-- The CXX compiler identification is GNU 11.4.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)
+-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter
+-- Found rclcpp: 16.0.17 (/opt/ros/humble/share/rclcpp/cmake)
+-- Found rosidl_generator_c: 3.1.8 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+-- Found rosidl_adapter: 3.1.8 (/opt/ros/humble/share/rosidl_adapter/cmake)
+-- Found rosidl_generator_cpp: 3.1.8 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+-- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+-- Found rmw_fastrtps_cpp: 6.2.9 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+-- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.2")
+-- Found FastRTPS: /opt/ros/humble/include
+-- Using RMW implementation 'rmw_fastrtps_cpp' as default
+-- Looking for pthread.h
+-- Looking for pthread.h - found
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE
+-- Found ament_lint_auto: 0.12.14 (/opt/ros/humble/share/ament_lint_auto/cmake)
+-- Added test 'copyright' to check source files copyright and LICENSE
+-- Added test 'cppcheck' to perform static code analysis on C / C++ code
+-- Configured cppcheck include dirs:
+-- Configured cppcheck exclude dirs and/or files:
+-- Added test 'cpplint' to check C / C++ code against the Google style
+-- Configured cpplint exclude dirs and/or files:
+-- Added test 'flake8' to check Python code syntax and style conventions
+-- Added test 'lint_cmake' to check CMake code style
+-- Added test 'pep257' to check Python code against some of the docstring style conventions in PEP 257
+-- Added test 'uncrustify' to check C / C++ code style
+-- Configured uncrustify additional arguments:
+-- Added test 'xmllint' to check XML markup files
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/hw/PolyU-AAE5303-env-smork-test/ros2_ws/build/env_check_pkg
+[ 25%] Building CXX object CMakeFiles/talker.dir/src/talker.cpp.o
+[ 50%] Building CXX object CMakeFiles/listener.dir/src/listener.cpp.o
+[ 75%] Linking CXX executable talker
+[ 75%] Built target talker
+[100%] Linking CXX executable listener
+[100%] Built target listener
+-- Install configuration: ""
+-- Installing: /home/hw/PolyU-AAE5303-env-smork-test/ros2_ws/install/env_check_pkg/lib/env_check_pkg/talker
+-- Set runtime path of "/home/hw/PolyU-AAE5303-env-smork-test/ros2_ws/install/env_check_pkg/lib/env_check_pkg/talker" to ""
+-- Installing: /home/hw/PolyU-AAE5303-env-smork-test/ros2_ws/install/env_check_pkg/lib/env_check_pkg/listener
+-- Set runtime path of "/home/hw/PolyU-AAE5303-env-smork-test/ros2_ws/install/env_check_pkg/lib/env_check_pkg/listener" to ""
+-- Installing: /home/hw/PolyU-AAE5303-env-smork-test/ros2_ws/install/env_check_pkg/share/env_check_pkg/launch
+-- Installing: /home/hw/PolyU-AAE5303-env-smork-test/ros2_ws/install/env_check_pkg/share/env_check_pkg/launch/env_check.launch.py
+-- Installing: /home/hw/PolyU-AAE5303-env-smork-test/ros2_ws/install/env_check_pkg/share/ament_index/resource_index/package_run_dependencies/env_check_pkg
+-- Installing: /home/hw/PolyU-AAE5303-env-smork-test/ros2_ws/install/env_check_pkg/share/ament_index/resource_index/parent_prefix_path/env_check_pkg
+-- Installing: /home/hw/PolyU-AAE5303-env-smork-test/ros2_ws/install/env_check_pkg/share/env_check_pkg/environment/ament_prefix_path.sh
+-- Installing: /home/hw/PolyU-AAE5303-env-smork-test/ros2_ws/install/env_check_pkg/share/env_check_pkg/environment/ament_prefix_path.dsv
+-- Installing: /home/hw/PolyU-AAE5303-env-smork-test/ros2_ws/install/env_check_pkg/share/env_check_pkg/environment/path.sh
+-- Installing: /home/hw/PolyU-AAE5303-env-smork-test/ros2_ws/install/env_check_pkg/share/env_check_pkg/environment/path.dsv
+-- Installing: /home/hw/PolyU-AAE5303-env-smork-test/ros2_ws/install/env_check_pkg/share/env_check_pkg/local_setup.bash
+-- Installing: /home/hw/PolyU-AAE5303-env-smork-test/ros2_ws/install/env_check_pkg/share/env_check_pkg/local_setup.sh
+-- Installing: /home/hw/PolyU-AAE5303-env-smork-test/ros2_ws/install/env_check_pkg/share/env_check_pkg/local_setup.zsh
+-- Installing: /home/hw/PolyU-AAE5303-env-smork-test/ros2_ws/install/env_check_pkg/share/env_check_pkg/local_setup.dsv
+-- Installing: /home/hw/PolyU-AAE5303-env-smork-test/ros2_ws/install/env_check_pkg/share/env_check_pkg/package.dsv
+-- Installing: /home/hw/PolyU-AAE5303-env-smork-test/ros2_ws/install/env_check_pkg/share/ament_index/resource_index/packages/env_check_pkg
+-- Installing: /home/hw/PolyU-AAE5303-env-smork-test/ros2_ws/install/env_check_pkg/share/env_check_pkg/cmake/env_check_pkgConfig.cmake
+-- Installing: /home/hw/PolyU-AAE5303-env-smork-test/ros2_ws/install/env_check_pkg/share/env_check_pkg/cmake/env_check_pkgConfig-version.cmake
+-- Installing: /home/hw/PolyU-AAE5303-env-smork-test/ros2_ws/install/env_check_pkg/share/env_check_pkg/package.xml
+Finished <<< env_check_pkg [12.8s]
+
+Summary: 1 package finished [13.0s]]
 ```
 
 ### 3.2 Run talker and listener
@@ -177,22 +255,28 @@ source install/setup.bash
 
 **Then run talker:**
 ```bash
-ros2 run env_check_pkg talker.py
+ros2 run env_check_pkg talker
 ```
 
 **Output (3–4 lines):**
 ```
-[Paste 3-4 lines of talker output here]
+[[INFO] [1769675764.215274608] [env_check_pkg_talker]: Publishing: 'AAE5303 hello #473'
+[INFO] [1769675764.714740791] [env_check_pkg_talker]: Publishing: 'AAE5303 hello #474'
+[INFO] [1769675765.214604244] [env_check_pkg_talker]: Publishing: 'AAE5303 hello #475'
+[INFO] [1769675765.715065481] [env_check_pkg_talker]: Publishing: 'AAE5303 hello #476']
 ```
 
 **Run listener:**
 ```bash
-ros2 run env_check_pkg listener.py
+ros2 run env_check_pkg listener
 ```
 
 **Output (3–4 lines):**
 ```
-[Paste 3-4 lines of listener output here]
+[[INFO] [1769675790.737148290] [env_check_pkg_listener]: I heard: 'AAE5303 hello #526'
+[INFO] [1769675791.230399006] [env_check_pkg_listener]: I heard: 'AAE5303 hello #527'
+[INFO] [1769675791.720658408] [env_check_pkg_listener]: I heard: 'AAE5303 hello #528'
+[INFO] [1769675792.205608128] [env_check_pkg_listener]: I heard: 'AAE5303 hello #529']
 ```
 
 **Alternative (using launch file):**
