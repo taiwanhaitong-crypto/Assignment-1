@@ -141,7 +141,7 @@ python scripts/test_open3d_pointcloud.py
 **Screenshot:**  
 _[Include one screenshot showing both tests passing]_
 
-![Python Tests Passing](path/to/your/screenshot.png)
+![Python Tests Passing](images/tests.png)
 
 ---
 
@@ -287,7 +287,7 @@ ros2 launch env_check_pkg env_check.launch.py
 **Screenshot:**  
 _[Include one screenshot showing talker + listener running]_
 
-![Talker and Listener Running](path/to/your/screenshot.png)
+![Talker and Listener Running](images/talker_listener.png)
 
 ---
 
@@ -409,13 +409,13 @@ _[Write your 3-5 sentence reflection here]_
 ✅ **I confirm that I performed this setup myself and all screenshots/logs reflect my own environment.**
 
 **Name:**  
-_[Your name]_
+_[GE Haitong]_
 
 **Student ID:**  
-_[Your student ID]_
+_[25107611g]_
 
 **Date:**  
-_[Date of submission]_
+_[1-29-2026]_
 
 ---
 
