@@ -295,56 +295,68 @@ _[Include one screenshot showing talker + listener running]_
 
 > **Note:** Write 2–3 issues, even if small. This section is crucial — it demonstrates understanding and problem-solving.
 
-### Issue 1: [Write the exact error message or problem]
+### Issue 1: [ROS 2 distro / Ubuntu version mismatch (ros2 not found or install not supported)]
 
 **Cause / diagnosis:**  
-_[Explain what you think caused it]_
+_[I initially tried to set up ROS 2 on an environment that didn’t match the intended ROS distro (Ubuntu 24.04 with ROS 2 Humble). Humble targets Ubuntu 22.04, so packages may not install correctly and ros2 may not be available, or sourcing scripts does not provide the expected environment.]_
+
+**Fix:**  
+_[Use an Ubuntu 22.04 environment (WSL2 Ubuntu 22.04) and install/source ROS 2 Humble correctly.
+
+
+```bash
+[# Verify Ubuntu version
+lsb_release -a
+
+# Verify ROS 2 CLI exists after installation
+source /opt/ros/humble/setup.bash
+which ros2
+ros2 --version
+echo $ROS_DISTRO]_
+]
+```
+
+**Reference:**  
+_[chatgpt]_
+![chatgpt](images/problem1.png)
+
+---
+
+### Issue 2: [ROS 2 workspace build/runtime failed due to leftover build artifacts / not sourcing install setup]
+
+**Cause / diagnosis:**  
+When running the environment check script (Step 9 builds and runs env_check_pkg), the ROS 2 workspace build or execution can fail if there are stale build/, install/, log/ folders from a previous attempt, or if the terminal did not source the workspace’s install/setup.bash. In that case, ros2 run env_check_pkg ... may fail to find the package/executables.
 
 **Fix:**  
 _[The exact command/config change you used to solve it]_
 
 ```bash
-[Your fix command/code here]
+[# Verify Ubuntu version
+lsb_release -a
+
+# Verify ROS 2 CLI exists after installation
+source /opt/ros/humble/setup.bash
+which ros2
+ros2 --version
+echo $ROS_DISTRO
+Environment check failed (1 issue(s)).
+(.venv) hw@HongYun:~/PolyU-AAE5303-env-smork-test$ deactivate
+hw@HongYun:~/PolyU-AAE5303-env-smork-test$ cd ~/PolyU-AAE5303-env-smork-test/ros2_ws
+rm -rf build install log
+hw@HongYun:~/PolyU-AAE5303-env-smork-test/ros2_ws$ source /opt/ros/humble/setup.bash
+hw@HongYun:~/PolyU-AAE5303-env-smork-test/ros2_ws$ colcon build --event-handlers console_direct+
+Summary: 1 package finished [13.0s]
+hw@HongYun:~/PolyU-AAE5303-env-smork-test/ros2_ws$ cd ~/PolyU-AAE5303-env-smork-test/ros2_ws
+hw@HongYun:~/PolyU-AAE5303-env-smork-test/ros2_ws$ source /opt/ros/humble/setup.bash
+hw@HongYun:~/PolyU-AAE5303-env-smork-test/ros2_ws$ source install/setup.bash]
 ```
 
 **Reference:**  
-_[Official ROS docs? StackOverflow? AI assistant? Something else?]_
+_[chatgpt]_
+![chatgpt](images/problem2.png)
 
 ---
 
-### Issue 2: [Another real error or roadblock]
-
-**Cause / diagnosis:**  
-_[Explain what you think caused it]_
-
-**Fix:**  
-_[The exact command/config change you used to solve it]_
-
-```bash
-[Your fix command/code here]
-```
-
-**Reference:**  
-_[Official ROS docs? StackOverflow? AI assistant? Something else?]_
-
----
-
-### Issue 3 (Optional): [Title]
-
-**Cause / diagnosis:**  
-_[Explain what you think caused it]_
-
-**Fix:**  
-_[The exact command/config change you used to solve it]_
-
-```bash
-[Your fix command/code here]
-```
-
-**Reference:**  
-_[Official ROS docs? StackOverflow? AI assistant? Something else?]_
-
----
 
 ## 5. Use of Generative AI (Required)
 
@@ -356,14 +368,29 @@ Choose one of the issues above and document how you used AI to solve it.
 
 **Your prompt:**
 ```
-[Copy-paste your actual message to the AI, not a summary]
+[I'm running the course repo env check on ROS 2 Humble. I built the workspace but when I run:
+ros2 run env_check_pkg talker
+it fails / the package isn't found. My workspace is at ~/PolyU-AAE5303-env-smork-test/ros2_ws.
+What exact commands should I run to clean rebuild and source the right setup files in the correct order?]
 ```
 
 ### 5.2 Key helpful part of the AI's answer
 
 **AI's response (relevant part only):**
 ```
-[Quote only the relevant part of the AI's answer]
+[1) Source ROS first:
+   source /opt/ros/humble/setup.bash
+
+2) From your workspace (~/.../ros2_ws), do a clean rebuild if needed:
+   rm -rf build install log
+   colcon build --symlink-install
+
+3) Source the workspace overlay:
+   source install/setup.bash
+
+4) Then run:
+   ros2 run env_check_pkg talker
+   (and in another terminal, after sourcing, run the listener)]
 ```
 
 ### 5.3 What you changed or ignored and why
@@ -374,18 +401,22 @@ Explain briefly:
 - Did you double-check with official docs?
 
 **Your explanation:**  
-_[Write your analysis here]_
+_[I followed the AI’s suggested sourcing order (ROS first, then workspace overlay), because that matches standard ROS 2 practice. I double-checked the commands against the official ROS 2 colcon tutorial to ensure colcon build and sourcing install/setup.bash were correct. I did not blindly run anything that modifies system files; the only destructive step was deleting build/ install/ log/ inside my own workspace, which is safe and reversible. I also kept the commands specific to my workspace path to avoid accidentally deleting the wrong directory.]_
 
 ### 5.4 Final solution you applied
 
 Show the exact command or file edit that fixed the problem:
 
 ```bash
-[Your final command/code here]
+[hw@HongYun:~/PolyU-AAE5303-env-smork-test/ros2_ws$ source /opt/ros/humble/setup.bash
+hw@HongYun:~/PolyU-AAE5303-env-smork-test/ros2_ws$ rm -rf build install log
+hw@HongYun:~/PolyU-AAE5303-env-smork-test/ros2_ws$ colcon build --symlink-install
+hw@HongYun:~/PolyU-AAE5303-env-smork-test/ros2_ws$ source install/setup.bash
+hw@HongYun:~/PolyU-AAE5303-env-smork-test/ros2_ws$ ros2 run env_check_pkg talker]
 ```
 
 **Why this worked:**  
-_[Brief explanation]_
+_[colcon build generates the package executables under the workspace install/ directory. Sourcing /opt/ros/humble/setup.bash provides the base ROS 2 environment, and sourcing install/setup.bash overlays my workspace so ros2 can discover env_check_pkg. Cleaning build/install/log removed stale artifacts that could cause build/runtime inconsistencies.]_
 
 ---
 
@@ -400,7 +431,9 @@ Short but thoughtful:
 
 **Your reflection:**
 
-_[Write your 3-5 sentence reflection here]_
+_[This assignment taught me that robotics environments are very sensitive to small configuration details, especially the ROS distro/OS compatibility and the order of sourcing setup files. I was surprised that forgetting a single source install/setup.bash can make a built package appear “missing,” even though the code is present. Next time I will read the terminal error message more carefully, verify my environment with echo $ROS_DISTRO and which ros2, and keep a short checklist for clean rebuild + sourcing steps. I feel more confident debugging ROS/Python setup issues now, because I understand how the workspace overlay and package discovery work.
+
+]_
 
 ---
 
@@ -423,13 +456,13 @@ _[1-29-2026]_
 
 Before submitting, ensure you have:
 
-- [ ] Filled in all system information
-- [ ] Included actual terminal outputs (not just screenshots)
-- [ ] Provided at least 2 screenshots (Python tests + ROS talker/listener)
-- [ ] Documented 2–3 real problems with solutions
-- [ ] Completed the AI usage section with exact prompts
-- [ ] Written a thoughtful reflection (3–5 sentences)
-- [ ] Signed the declaration
+- [x] Filled in all system information
+- [x] Included actual terminal outputs (not just screenshots)
+- [x] Provided at least 2 screenshots (Python tests + ROS talker/listener)
+- [x] Documented 2–3 real problems with solutions
+- [x] Completed the AI usage section with exact prompts
+- [x] Written a thoughtful reflection (3–5 sentences)
+- [x] Signed the declaration
 
 ---
 
