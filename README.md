@@ -52,7 +52,72 @@ python scripts/test_python_env.py
 
 **Output:**
 ```
-[Paste your actual terminal output here]
+[(.venv) hw@HongYun:~/PolyU-AAE5303-env-smork-test$ python scripts/test_python_env.py
+========================================
+AAE5303 Environment Check (Python + ROS)
+Goal: help you verify your environment and understand what each check means.
+========================================
+
+Step 1: Environment snapshot
+  Why: We capture platform/Python/ROS variables to diagnose common setup mistakes (especially mixed ROS env).
+Step 2: Python version
+  Why: The course assumes Python 3.10+; older versions often break package wheels.
+Step 3: Python imports (required/optional)
+  Why: Imports verify packages are installed and compatible with your Python version.
+Step 4: NumPy sanity checks
+  Why: We run a small linear algebra operation so success means more than just `import numpy`.
+Step 5: SciPy sanity checks
+  Why: We run a small FFT to confirm SciPy is functional (not just installed).
+Step 6: Matplotlib backend check
+  Why: We generate a tiny plot image (headless) to confirm plotting works on your system.
+Step 7: OpenCV PNG decoding (subprocess)
+  Why: PNG decoding uses native code; we isolate it so corruption/codec issues cannot crash the whole report.
+Step 8: Open3D basic geometry + I/O (subprocess)
+  Why: Open3D is a native extension; ABI mismatches can segfault. Subprocess isolation turns crashes into readable failures.
+Step 9: ROS toolchain checks
+  Why: The course requires ROS tooling. This check passes if ROS 2 OR ROS 1 is available (either one is acceptable).
+Step 10: Basic CLI availability
+  Why: We confirm core commands exist on PATH so students can run the same commands as in the labs.
+
+=== Summary ===
+✅ Environment: {
+  "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+  "python": "3.12.3",
+  "executable": "/home/hw/PolyU-AAE5303-env-smork-test/.venv/bin/python",
+  "cwd": "/home/hw/PolyU-AAE5303-env-smork-test",
+  "ros": {
+    "ROS_VERSION": null,
+    "ROS_DISTRO": null,
+    "ROS_ROOT": null,
+    "ROS_PACKAGE_PATH": null,
+    "AMENT_PREFIX_PATH": null,
+    "CMAKE_PREFIX_PATH": null
+  }
+}
+✅ Python version OK: 3.12.3
+✅ Module 'numpy' found (v2.4.1).
+✅ Module 'scipy' found (v1.17.0).
+✅ Module 'matplotlib' found (v3.10.8).
+✅ Module 'cv2' found (v4.13.0).
+✅ Missing optional module 'rclpy'.
+✅ numpy matrix multiply OK.
+✅ numpy version 2.4.1 detected.
+✅ scipy FFT OK.
+✅ scipy version 1.17.0 detected.
+✅ matplotlib backend OK (Agg), version 3.10.8.
+✅ OpenCV OK (v4.13.0), decoded sample image 128x128.
+✅ Open3D OK (v0.19.0), NumPy 2.4.1.
+✅ Open3D loaded sample PCD with 8 pts and completed round-trip I/O.
+✅ ROS 2 CLI not found (acceptable if ROS 1 is installed).
+✅ ROS 1 tools not found (acceptable if ROS 2 is installed).
+❌ ROS requirement not satisfied: neither ROS 2 nor ROS 1 appears to be installed/working.
+   ↳ Fix: Install either ROS 2 (recommended) or ROS 1, then open a new terminal and source it:
+  - ROS 2 (Humble): source /opt/ros/humble/setup.bash
+  - ROS 1 (Noetic): source /opt/ros/noetic/setup.bash
+If you are in a container/VM, ensure you followed the official installation guide and that the binaries are on PATH.
+✅ Binary 'python3' found at /home/hw/PolyU-AAE5303-env-smork-test/.venv/bin/python3
+
+Environment check failed (1 issue(s)).]
 ```
 
 ```bash
@@ -61,7 +126,16 @@ python scripts/test_open3d_pointcloud.py
 
 **Output:**
 ```
-[Paste your actual terminal output here]
+[(.venv) hw@HongYun:~/PolyU-AAE5303-env-smork-test$ python scripts/test_open3d_pointcloud.py
+ℹ️ Loading /home/hw/PolyU-AAE5303-env-smork-test/data/sample_pointcloud.pcd ...
+✅ Loaded 8 points.
+   • Centroid: [0.025 0.025 0.025]
+   • Axis-aligned bounds: min=[0. 0. 0.], max=[0.05 0.05 0.05]
+✅ Filtered point cloud kept 7 points.
+✅ Wrote filtered copy with 7 points to /home/hw/PolyU-AAE5303-env-smork-test/data/sample_pointcloud_copy.pcd
+   • AABB extents: [0.05 0.05 0.05]
+   • OBB  extents: [0.08164966 0.07071068 0.05773503], max dim 0.0816 m
+🎉 Open3D point cloud pipeline looks good.]
 ```
 
 **Screenshot:**  
